@@ -77,6 +77,8 @@ public class GameUI : Singleton<GameUI>
 
     public void ShowLose()
     {
+        QuangCao.Instance.PhatQuangCao();
+        
         lose.SetActive(true);
     }
 

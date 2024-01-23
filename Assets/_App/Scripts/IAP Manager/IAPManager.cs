@@ -7,10 +7,11 @@ using UnityEngine.Purchasing;
 
 public class Key
 {
-    public const string PACK1 = "robot_pack1";
-    public const string PACK2 = "robot_pack2";
-    public const string PACK3 = "robot_pack3";
-    public const string PACK4 = "robot_pack4";
+    public const string PACK1 = "remove_ads_robot_pack1";
+    public const string PACK2 = "remove_ads_robot_pack2";
+    public const string PACK3 = "remove_ads_robot_pack3";
+    public const string PACK4 = "remove_ads_robot_pack4";
+    public const string PACK5 = "remove_ads_robot_pack5";
 }
 
 public class IAPManager : PersistentSingleton<IAPManager>, IStoreListener
@@ -43,10 +44,11 @@ public class IAPManager : PersistentSingleton<IAPManager>, IStoreListener
 
         var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 
-        builder.AddProduct(Key.PACK1, ProductType.Consumable);
-        builder.AddProduct(Key.PACK2, ProductType.Consumable);
-        builder.AddProduct(Key.PACK3, ProductType.Consumable);
-        builder.AddProduct(Key.PACK4, ProductType.Consumable);
+        builder.AddProduct(Key.PACK1, ProductType.Subscription);
+        builder.AddProduct(Key.PACK2, ProductType.Subscription);
+        builder.AddProduct(Key.PACK3, ProductType.Subscription);
+        builder.AddProduct(Key.PACK4, ProductType.Subscription);
+        builder.AddProduct(Key.PACK5, ProductType.Subscription);
         UnityPurchasing.Initialize(this, builder);
     }
 
@@ -133,6 +135,11 @@ public class IAPManager : PersistentSingleton<IAPManager>, IStoreListener
     public void OnInitializeFailed(InitializationFailureReason error)
     {
         Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+    }
+
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        
     }
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
